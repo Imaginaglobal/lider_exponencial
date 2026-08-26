@@ -221,8 +221,12 @@ body.menu-open .burger span:nth-child(3){transform:translateY(-5px) rotate(-45de
 /* ---------- quote ---------- */
 .quote{background:var(--ink);padding-block:clamp(56px,7vw,100px);text-align:center;overflow:hidden}
 .quote::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 130% at 50% 125%,rgba(139,63,212,.34),transparent 62%)}
-.quote blockquote{position:relative;margin:0 auto;max-width:26ch;font-size:clamp(1.35rem,3.1vw,2.35rem);
-  font-weight:600;font-style:italic;letter-spacing:-.035em;line-height:1.24}
+/* La cita entra en dos renglones parejos: el corte es explícito y el
+   cuerpo baja un punto para que el bloque no se ensanche de más. */
+.quote blockquote{position:relative;margin:0 auto;max-width:43ch;font-size:clamp(1.3rem,2.5vw,1.9rem);
+  font-weight:600;font-style:italic;letter-spacing:-.035em;line-height:1.28;text-wrap:balance}
+.quote blockquote br{display:none}
+@media (min-width:781px){.quote blockquote br{display:inline}}
 .quote .mark{display:block;font-size:clamp(3rem,6vw,5rem);line-height:.34;color:var(--violet);opacity:.5;margin-bottom:24px}
 
 /* ---------- es / no es ---------- */
@@ -346,7 +350,8 @@ a:hover .li-badge{transform:scale(1.14) rotate(-6deg)}
 .row{display:grid;grid-template-columns:132px 1fr 210px;gap:18px;padding:15px clamp(18px,2.2vw,28px);
   border-top:1px solid var(--line-l);align-items:baseline;transition:background .35s}
 .row:hover{background:rgba(207,132,247,.06)}
-.row .t{font-size:.9rem;color:#9A9AAE;font-variant-numeric:tabular-nums;font-weight:500}
+/* El rango horario nunca se parte: si no entra, la columna crece. */
+.row .t{font-size:.9rem;color:#9A9AAE;font-variant-numeric:tabular-nums;font-weight:500;white-space:nowrap}
 .row .s{font-size:1rem;line-height:1.45}
 .row .w{font-size:.93rem;color:var(--violet-deep);font-weight:600}
 
@@ -464,7 +469,9 @@ footer{background:var(--ink);border-top:1px solid var(--line-d);padding:clamp(44
   .dir-photo{max-width:420px}
   .sp-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .days{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .row{grid-template-columns:112px 1fr;gap:6px 16px}
+  /* La columna de horarios se dimensiona sola al rango más largo,
+     así "11:30 – 13:00" no se corta en varias líneas. */
+  .row{grid-template-columns:auto 1fr;gap:6px 16px}
   .row .w{grid-column:2;font-size:.88rem}
   .stats-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .stat:nth-child(3){border-left:0}
@@ -486,11 +493,15 @@ footer{background:var(--ink);border-top:1px solid var(--line-d);padding:clamp(44
   .sticky-cta{display:block}
   .nav .btn{display:none}
   body{padding-bottom:0}
+  /* En celular cada bloque de agenda se lee como una ficha apilada:
+     horario arriba, tema, y expositor abajo. Nada se parte ni se aprieta. */
+  .row{grid-template-columns:1fr;gap:4px;padding-block:17px;align-items:start}
+  .row .t{font-size:.84rem;font-weight:600;letter-spacing:.02em}
+  .row .s{font-size:1.02rem;line-height:1.4}
+  .row .w{grid-column:1;font-size:.9rem;margin-top:2px}
 }
 @media (max-width:520px){
   .q-item{grid-template-columns:1fr;gap:10px}
-  .row{grid-template-columns:1fr}
-  .row .t{font-size:.82rem}
 }
 </style>
 </head>
@@ -615,7 +626,7 @@ footer{background:var(--ink);border-top:1px solid var(--line-d);padding:clamp(44
 <section class="quote">
   <div class="wrap">
     <blockquote class="rv"><span class="mark" aria-hidden="true">“</span>
-      La evolución de las organizaciones depende de la evolución de sus propios líderes.</blockquote>
+      La evolución de las organizaciones depende<br>de la evolución de sus propios líderes.</blockquote>
   </div>
 </section>
 
