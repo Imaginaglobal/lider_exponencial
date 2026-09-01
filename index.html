@@ -344,9 +344,9 @@ a:hover .li-badge{transform:scale(1.14) rotate(-6deg)}
   box-shadow:0 22px 54px -34px rgba(28,39,85,.5)}
 .panel[hidden]{display:none}
 .panel-head{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
-  padding:16px clamp(18px,2.2vw,28px);background:var(--grad);color:#fff}
-.panel-head strong{font-size:clamp(.95rem,1.3vw,1.08rem);font-weight:700;letter-spacing:-.02em}
-.panel-head span{font-size:.85rem;opacity:.94}
+  padding:11px clamp(16px,2vw,24px);background:var(--grad);color:#fff}
+.panel-head strong{font-size:clamp(.86rem,1.1vw,.97rem);font-weight:700;letter-spacing:-.02em}
+.panel-head span{font-size:.78rem;opacity:.94}
 .row{display:grid;grid-template-columns:132px 1fr 210px;gap:18px;padding:15px clamp(18px,2.2vw,28px);
   border-top:1px solid var(--line-l);align-items:baseline;transition:background .35s}
 .row:hover{background:rgba(207,132,247,.06)}
@@ -462,6 +462,29 @@ footer{background:var(--ink);border-top:1px solid var(--line-d);padding:clamp(44
 .sticky-cta.show{transform:none}
 .sticky-cta .btn{width:100%;justify-content:center;padding-block:17px}
 
+/* ============ dónde · sede presencial ============ */
+.loc{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(28px,4vw,60px);align-items:stretch}
+    .loc-col{display:flex;flex-direction:column;justify-content:center}
+#donde h2{font-size:clamp(1.6rem,2.9vw,2.35rem)}
+.loc-place{display:flex;align-items:flex-start;gap:15px;margin-top:clamp(22px,2.6vw,30px);
+  padding:20px 24px;border-radius:var(--r);border:1px solid var(--line-d);
+  background:linear-gradient(140deg,rgba(207,132,247,.13),rgba(45,90,214,.07))}
+.loc-place > svg{width:26px;height:26px;flex:none;margin-top:4px;color:var(--violet)}
+.loc-place .n{display:block;font-size:clamp(1.12rem,1.8vw,1.4rem);font-weight:700;letter-spacing:-.03em;line-height:1.22}
+.loc-place .b{display:block;margin-top:5px;font-size:.93rem;color:var(--txt-l-soft)}
+.loc-note{margin-top:20px;font-size:.96rem;line-height:1.6;color:var(--txt-l-soft);max-width:46ch}
+.loc-cta{margin-top:clamp(22px,2.6vw,30px);display:flex;flex-wrap:wrap;gap:12px}
+.loc-map{position:relative;display:flex;align-items:center;width:100%;max-width:680px;margin-left:auto;border-radius:var(--r-lg);overflow:hidden;border:1px solid var(--line-d);
+  background:radial-gradient(120% 105% at 24% 10%,#231a52 0%,#120E2C 58%,#08061A 100%);box-shadow:var(--shadow)}
+.loc-map svg{width:100%;height:auto;display:block}
+.loc-ring{transform-box:fill-box;transform-origin:center;animation:locPulse 3.6s var(--ease) infinite}
+.loc-ring.r2{animation-delay:1.2s}
+.loc-ring.r3{animation-delay:2.4s}
+@keyframes locPulse{0%{opacity:.6;transform:scale(.3)}70%{opacity:0;transform:scale(1)}100%{opacity:0;transform:scale(1)}}
+.loc-pin{transform-box:fill-box;transform-origin:center bottom;animation:locDrop 3.6s var(--ease) infinite}
+@keyframes locDrop{0%,74%,100%{transform:translateY(0)}82%{transform:translateY(-10px)}90%{transform:translateY(0)}}
+@media (prefers-reduced-motion:reduce){.loc-ring,.loc-pin{animation:none}}
+
 /* ============ responsive ============ */
 @media (max-width:1080px){
   .nav-links{display:none}
@@ -469,7 +492,8 @@ footer{background:var(--ink);border-top:1px solid var(--line-d);padding:clamp(44
   .nav-links.open{display:flex;position:absolute;inset:100% 0 auto 0;flex-direction:column;align-items:stretch;
     gap:2px;padding:16px var(--pad) 24px;background:rgba(8,6,26,.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--line-d)}
   .nav-links.open a{padding:14px 12px;font-size:1rem;color:#fff}
-  .split,.exp-wrap,.dir,.form-grid{grid-template-columns:1fr}
+  .split,.exp-wrap,.dir,.form-grid,.loc{grid-template-columns:1fr}
+  .loc-map{margin-inline:auto}
   .dir-photo{max-width:420px}
   .sp-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .days{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -519,7 +543,7 @@ footer{background:var(--ink);border-top:1px solid var(--line-d);padding:clamp(44
     <a href="#experiencia">La experiencia</a>
     <a href="#recursos">Qué te llevás</a>
     <a href="#expositores">Expositores</a>
-    <a href="#agenda">Agenda</a>
+    <a href="#agenda">Agenda</a><a href="#donde">Dónde</a>
     <a href="#admision">Admisión</a>
   </div>
   <div style="display:flex;gap:10px;align-items:center">
@@ -590,7 +614,7 @@ footer{background:var(--ink);border-top:1px solid var(--line-d);padding:clamp(44
   <div class="wrap" style="padding-inline:0">
     <dl class="stats-grid">
       <div class="stat rv"><dt>Duración</dt><dd><span class="big" data-count="20">20</span><span class="sub">Horas · cuatro jornadas</span></dd></div>
-      <div class="stat rv" data-d="1"><dt>Modalidad</dt><dd><span class="big">Híbrida</span><span class="sub">2 jornadas presenciales completas + 2 sesiones virtuales</span></dd></div>
+      <div class="stat rv" data-d="1"><dt>Modalidad</dt><dd><span class="big">Híbrida</span><span class="sub">2 jornadas presenciales en el Parque de Innovación + 2 sesiones virtuales</span></dd></div>
       <div class="stat rv" data-d="2"><dt>Especialistas</dt><dd><span class="big" data-count="11">11</span><span class="sub">Academia, ciencia, tecnología, liderazgo, CEOs</span></dd></div>
       <div class="stat rv" data-d="3"><dt>Cursada</dt><dd><span class="big">Sep – Oct</span><span class="sub">Cupos limitados</span></dd></div>
     </dl>
@@ -840,7 +864,7 @@ footer{background:var(--ink);border-top:1px solid var(--line-d);padding:clamp(44
 </section>
 
 <!-- ===================== AGENDA ===================== -->
-<section class="sec paper" id="agenda">
+<section class="sec paper tight-b" id="agenda">
   <div class="wrap">
     <div class="kicker rv">Agenda de la experiencia</div>
     <h2 class="rv" data-d="1">20 horas, cuatro encuentros</h2>
@@ -865,7 +889,7 @@ footer{background:var(--ink);border-top:1px solid var(--line-d);padding:clamp(44
     </div>
 
     <div class="panel" id="p1" role="tabpanel" aria-labelledby="tab-1">
-      <div class="panel-head"><strong>Jornada 1 · Jueves 24 de septiembre de 2026</strong><span>Presencial · 9:00 – 17:00</span></div>
+      <div class="panel-head"><strong>Jornada 1 · Jueves 24 de septiembre de 2026</strong><span>Presencial · 9:00 – 17:00 · Parque de Innovación</span></div>
       <div class="row"><div class="t">9:00 – 9:30</div><div class="s">Una nueva visión de liderazgo.</div><div class="w">Patricio Fedio</div></div>
       <div class="row"><div class="t">9:30 – 11:00</div><div class="s">Inteligencia artificial sin humo.</div><div class="w">Daniel Stilerman</div></div>
       <div class="row"><div class="t">11:30 – 13:00</div><div class="s">Gobernanza de la IA: innovar con responsabilidad.</div><div class="w">Gabriela Szlak</div></div>
@@ -887,13 +911,150 @@ footer{background:var(--ink);border-top:1px solid var(--line-d);padding:clamp(44
     </div>
 
     <div class="panel" id="p4" role="tabpanel" aria-labelledby="tab-4" hidden>
-      <div class="panel-head"><strong>Jornada 4 · Jueves 8 de octubre de 2026</strong><span>Presencial · 9:00 – 17:00</span></div>
+      <div class="panel-head"><strong>Jornada 4 · Jueves 8 de octubre de 2026</strong><span>Presencial · 9:00 – 17:00 · Parque de Innovación</span></div>
       <div class="row"><div class="t">9:00 – 10:00</div><div class="s">El sistema operativo del nuevo liderazgo.</div><div class="w">Patricio Fedio</div></div>
       <div class="row"><div class="t">10:00 – 11:00</div><div class="s">El bienestar como capacidad estratégica.</div><div class="w">Celina Lotito</div></div>
       <div class="row"><div class="t">11:30 – 12:30</div><div class="s">Coherencia: cuando lo que pensamos, decimos y hacemos se alinea.</div><div class="w">Florencia Donati</div></div>
       <div class="row"><div class="t">12:30 – 14:00</div><div class="s">Almuerzo “en primera persona”: Cómo se construye una cultura de alto rendimiento.</div><div class="w">Franco Lena</div></div>
       <div class="row"><div class="t">14:00 – 16:30</div><div class="s">Executive Case Lab: inteligencia colectiva aplicada a tu organización.</div><div class="w">Patricio Fedio y Denise Abulafia</div></div>
       <div class="row"><div class="t">16:30 – 17:00</div><div class="s">Cierre.</div><div class="w">Patricio Fedio y Denise Abulafia</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== DÓNDE ===================== -->
+<section class="sec dark tight-t tight-b" id="donde">
+  <div class="wrap">
+    <div class="loc">
+      <div class="loc-col">
+        <div class="kicker rv">Dónde</div>
+        <h2 class="rv" data-d="1" style="max-width:26ch">Las jornadas presenciales son en el <span class="vio">Parque de Innovación.</span></h2>
+        <div class="loc-place rv" data-d="2">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.14 7-11a7 7 0 1 0-14 0c0 4.86 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg>
+          <span><span class="n">Parque de Innovación</span><span class="b">Núñez · Ciudad de Buenos Aires</span></span>
+        </div>
+        <p class="loc-note rv" data-d="3">Jornada 1 y Jornada 4, de 9:00 a 17:00, con desayuno y almuerzo incluidos. Las jornadas 2 y 3 son virtuales, en vivo.</p>
+        <div class="loc-cta rv" data-d="4">
+          <a class="btn" href="https://maps.app.goo.gl/68jUyQ1gKTU1XB8s7" target="_blank" rel="noopener">Abrir en Google Maps <span class="arw">&rarr;</span></a>
+        </div>
+      </div>
+      <div class="loc-map rv" data-d="2">
+        <svg viewBox="0 0 700 640" role="img" aria-label="Mapa de ubicación: el Parque de Innovación está en Núñez, entre la Av. Campos Salles, Ernesto A. Bavio y la Av. Guillermo Udaondo, pegado al Estadio Monumental, con la Av. del Libertador y la estación Núñez del Mitre al suroeste, y las avenidas Cantilo y Lugones, Ciudad Universitaria y el Río de la Plata al noreste.">
+      <defs>
+        <linearGradient id="locAv" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#CF84F7"/><stop offset="55%" stop-color="#7B4FE0"/><stop offset="100%" stop-color="#2D5AD6"/>
+        </linearGradient>
+        <linearGradient id="locPark" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="rgba(207,132,247,.36)"/><stop offset="100%" stop-color="rgba(45,90,214,.24)"/>
+        </linearGradient>
+        <linearGradient id="locWater" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="rgba(45,90,214,.42)"/><stop offset="100%" stop-color="rgba(45,90,214,.10)"/>
+        </linearGradient>
+        <linearGradient id="locPinG" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#CF84F7"/><stop offset="100%" stop-color="#8B3FD4"/>
+        </linearGradient>
+        <filter id="locGlow" x="-60%" y="-60%" width="220%" height="220%">
+          <feGaussianBlur stdDeviation="11" result="b"/>
+          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+
+      <!-- trama de calles -->
+      <g stroke="rgba(255,255,255,.075)" stroke-width="1">
+        <path d="M30 196V640M74 200V640M118 204V640M162 208V640M206 212V640"/>
+        <path d="M452 448V640M496 452V640M540 456V640M584 460V640M628 464V640M672 468V640"/>
+        <path d="M252 476V640M296 480V640M340 484V640M384 488V640"/>
+        <path d="M0 240H210M0 288H210M0 336H210M0 384H210M0 432H700M0 470H700M0 508H210M232 540H700M0 574H130M0 610H700"/>
+      </g>
+      <g fill="rgba(255,255,255,.035)">
+        <rect x="36" y="246" width="32" height="36" rx="4"/><rect x="80" y="252" width="32" height="30" rx="4"/>
+        <rect x="36" y="296" width="32" height="34" rx="4"/><rect x="124" y="296" width="32" height="34" rx="4"/>
+        <rect x="36" y="344" width="32" height="34" rx="4"/><rect x="168" y="344" width="32" height="34" rx="4"/>
+        <rect x="458" y="478" width="32" height="40" rx="4"/><rect x="546" y="482" width="32" height="36" rx="4"/>
+        <rect x="590" y="548" width="32" height="34" rx="4"/><rect x="502" y="548" width="32" height="34" rx="4"/>
+        <rect x="36" y="480" width="32" height="34" rx="4"/><rect x="124" y="480" width="32" height="34" rx="4"/>
+        <rect x="80" y="618" width="32" height="22" rx="4"/><rect x="256" y="618" width="32" height="22" rx="4"/>
+        <rect x="36" y="516" width="32" height="30" rx="4"/><rect x="168" y="516" width="32" height="30" rx="4"/>
+        <rect x="256" y="548" width="32" height="34" rx="4"/><rect x="344" y="548" width="32" height="34" rx="4"/>
+        <rect x="458" y="618" width="32" height="22" rx="4"/><rect x="546" y="618" width="32" height="22" rx="4"/>
+        <rect x="634" y="548" width="32" height="34" rx="4"/><rect x="256" y="478" width="32" height="30" rx="4"/>
+      </g>
+
+      <!-- río de la plata -->
+      <path d="M0 0H700V66C580 84 470 52 350 58 230 64 130 88 0 78Z" fill="url(#locWater)"/>
+      <path d="M0 78C130 88 230 64 350 58 470 52 580 84 700 66" fill="none" stroke="rgba(130,178,244,.6)" stroke-width="2"/>
+
+      <!-- franja costanera -->
+      <path d="M0 84C130 94 230 70 350 64 470 58 580 90 700 72V132C580 148 470 118 350 124 230 130 130 152 0 142Z" fill="rgba(207,132,247,.05)"/>
+      <path d="M0 142C130 152 230 130 350 124 470 118 580 148 700 132" fill="none" stroke="rgba(255,255,255,.09)" stroke-width="1"/>
+      <g fill="none" stroke="rgba(255,255,255,.07)" stroke-width="1">
+        <path d="M60 88V146M140 84V150M240 70V128M330 64V124"/>
+      </g>
+
+      <!-- ciudad universitaria + clubes -->
+      <g fill="rgba(207,132,247,.075)" stroke="rgba(207,132,247,.18)" stroke-width="1">
+        <rect x="436" y="96" width="86" height="40" rx="8"/>
+        <rect x="532" y="100" width="72" height="36" rx="8"/>
+        <rect x="614" y="94" width="86" height="42" rx="8"/>
+        <rect x="72" y="198" width="130" height="40" rx="9"/>
+        <rect x="72" y="248" width="130" height="80" rx="11"/>
+      </g>
+
+      <!-- avenidas principales -->
+      <path d="M-10 176C160 164 340 158 520 164 610 167 660 172 710 178" fill="none" stroke="url(#locAv)" stroke-width="9" stroke-linecap="round" opacity=".85"/>
+      <path d="M-10 192C160 180 340 174 520 180 610 183 660 188 710 194" fill="none" stroke="url(#locAv)" stroke-width="5" stroke-linecap="round" opacity=".5"/>
+      <path d="M-10 494C200 500 420 514 710 534" fill="none" stroke="url(#locAv)" stroke-width="9" stroke-linecap="round" opacity=".85"/>
+
+      <!-- calles del entorno del parque -->
+      <g fill="none" stroke="rgba(207,132,247,.45)" stroke-width="4.5" stroke-linecap="round">
+        <path d="M208 200V572"/><path d="M436 214V572"/><path d="M150 430H548"/>
+      </g>
+
+      <!-- ferrocarril mitre -->
+      <path d="M-10 566C170 574 340 584 560 594" fill="none" stroke="rgba(255,255,255,.32)" stroke-width="2" stroke-dasharray="10 7"/>
+      <circle cx="146" cy="570" r="5" fill="#0D0A20" stroke="rgba(255,255,255,.6)" stroke-width="2"/>
+
+      <!-- estadio monumental -->
+      <ellipse cx="524" cy="330" rx="66" ry="54" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.2)" stroke-width="1.5"/>
+      <ellipse cx="524" cy="330" rx="35" ry="25" fill="rgba(207,132,247,.18)"/>
+
+      <!-- parque de innovación -->
+      <path d="M218 252L428 240L434 404L224 414Z" fill="url(#locPark)" stroke="rgba(207,132,247,.66)" stroke-width="2"/>
+      <g stroke="rgba(255,255,255,.14)" stroke-width="1"><path d="M292 248V410M362 244V407M220 330H432"/></g>
+
+      <!-- pin -->
+      <g filter="url(#locGlow)">
+        <circle class="loc-ring r1" cx="320" cy="330" r="60" fill="none" stroke="rgba(207,132,247,.55)" stroke-width="2"/>
+        <circle class="loc-ring r2" cx="320" cy="330" r="60" fill="none" stroke="rgba(207,132,247,.4)" stroke-width="2"/>
+        <circle class="loc-ring r3" cx="320" cy="330" r="60" fill="none" stroke="rgba(207,132,247,.28)" stroke-width="2"/>
+        <g class="loc-pin">
+          <path d="M320 244c-19 0-35 16-35 35 0 26 35 51 35 51s35-25 35-51c0-19-16-35-35-35Z" fill="url(#locPinG)"/>
+          <circle cx="320" cy="279" r="11" fill="#0D0A20"/>
+        </g>
+      </g>
+
+      <!-- etiquetas -->
+      <g font-family="'Plus Jakarta Sans',system-ui,sans-serif">
+        <text x="232" y="400" font-size="15" font-weight="700" fill="#fff">Parque de Innovación</text>
+        <text x="536" y="36" font-size="13" font-weight="600" fill="rgba(150,192,245,.85)">Río de la Plata</text>
+        <text x="446" y="156" font-size="12" font-weight="600" fill="rgba(255,255,255,.5)">Ciudad Universitaria</text>
+        <text x="22" y="152" font-size="12" font-weight="600" fill="rgba(255,255,255,.58)">Av. Cantilo · Av. Lugones</text>
+        <text x="462" y="404" font-size="12" font-weight="600" fill="rgba(255,255,255,.56)">Estadio Monumental</text>
+        <text x="22" y="486" font-size="12" font-weight="600" fill="rgba(255,255,255,.58)">Av. del Libertador</text>
+        <text x="240" y="452" font-size="11" font-weight="600" fill="rgba(255,255,255,.44)">Ernesto A. Bavio</text>
+        <text x="166" y="556" font-size="11" font-weight="600" fill="rgba(255,255,255,.5)">Estación Núñez · Mitre</text>
+        <text x="198" y="372" font-size="11" font-weight="600" fill="rgba(255,255,255,.46)" transform="rotate(-90 198 372)">Av. Campos Salles</text>
+        <text x="452" y="556" font-size="11" font-weight="600" fill="rgba(255,255,255,.46)" transform="rotate(-90 452 556)">Av. G. Udaondo</text>
+        <text x="26" y="604" font-size="16" font-weight="700" fill="rgba(255,255,255,.22)" letter-spacing="4">NÚÑEZ</text>
+      </g>
+
+      <!-- norte -->
+      <g opacity=".5" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="1.6" stroke-linecap="round">
+        <path d="M44 52V28"/><path d="M38 34l6-6 6 6"/>
+        <text x="39" y="74" font-size="12" font-weight="600" fill="rgba(255,255,255,.7)" stroke="none" font-family="'Plus Jakarta Sans',system-ui,sans-serif">N</text>
+      </g>
+    </svg>
+      </div>
     </div>
   </div>
 </section>
@@ -1014,7 +1175,7 @@ footer{background:var(--ink);border-top:1px solid var(--line-d);padding:clamp(44
         <a href="#experiencia">El punto de partida</a>
         <a href="#recursos">Qué te llevás</a>
         <a href="#expositores">Expositores</a>
-        <a href="#agenda">Agenda</a>
+        <a href="#agenda">Agenda</a><a href="#donde">Dónde</a>
       </div>
       <div>
         <div class="foot-h">Admisión</div>
