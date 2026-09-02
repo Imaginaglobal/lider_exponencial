@@ -1141,8 +1141,15 @@ footer{background:var(--ink);border-top:1px solid var(--line-d);padding:clamp(44
                    placeholder="linkedin.com/in/tu-perfil"
                    pattern="https?://([a-z]{2,3}\.)?linkedin\.com/.+"
                    title="Pegá el link de tu perfil de LinkedIn" required></label>
-          <label class="field"><span>¿Sos miembro de REF Argentina?</span>
-            <select name="ref"><option>No</option><option>Sí</option><option>En proceso</option></select></label>
+          <label class="field"><span>¿Cómo te enteraste de la experiencia? *</span>
+            <select name="ref" required>
+              <option value="">Seleccioná una opción</option>
+              <option>Soy Miembro REF</option>
+              <option>Soy Miembro del Parque de Innovación</option>
+              <option>Redes Sociales</option>
+              <option>Grupo de WhatsApp</option>
+              <option>Otros</option>
+            </select></label>
         </div>
         <label class="field"><span>¿Qué desafío de tu organización querés trabajar?</span>
           <textarea name="desafio" placeholder="Contanos brevemente el desafío que traés a la mesa."></textarea></label>
