@@ -1135,8 +1135,15 @@ footer{background:var(--ink);border-top:1px solid var(--line-d);padding:clamp(44
               <option>C-Level</option><option>Otro</option>
             </select></label>
         </div>
-        <label class="field"><span>¿Sos miembro de REF Argentina?</span>
-          <select name="ref"><option>No</option><option>Sí</option><option>En proceso</option></select></label>
+        <div class="f-row">
+          <label class="field"><span>Perfil de LinkedIn *</span>
+            <input name="linkedin" id="linkedinIn" type="url" inputmode="url"
+                   placeholder="linkedin.com/in/tu-perfil"
+                   pattern="https?://([a-z]{2,3}\.)?linkedin\.com/.+"
+                   title="Pegá el link de tu perfil de LinkedIn" required></label>
+          <label class="field"><span>¿Sos miembro de REF Argentina?</span>
+            <select name="ref"><option>No</option><option>Sí</option><option>En proceso</option></select></label>
+        </div>
         <label class="field"><span>¿Qué desafío de tu organización querés trabajar?</span>
           <textarea name="desafio" placeholder="Contanos brevemente el desafío que traés a la mesa."></textarea></label>
         <label class="check"><input type="checkbox" name="acepto" required>
@@ -1442,8 +1449,19 @@ footer{background:var(--ink);border-top:1px solid var(--line-d);padding:clamp(44
     if(msg.scrollIntoView) msg.scrollIntoView({behavior:'smooth', block:'center'});
   }
 
+  /* Casi nadie escribe "https://" al pegar el perfil: se lo agregamos
+     antes de validar, así el campo no rechaza un link correcto. */
+  var liIn = document.getElementById('linkedinIn');
+  function normalizarLinkedin(){
+    if(!liIn) return;
+    var v = liIn.value.trim();
+    if(v && !/^https?:\/\//i.test(v)) liIn.value = 'https://' + v.replace(/^\/+/, '');
+  }
+  if(liIn) liIn.addEventListener('blur', normalizarLinkedin);
+
   form.addEventListener('submit', function(e){
     e.preventDefault();
+    normalizarLinkedin();
     if(!form.checkValidity()){
       show('err', 'Revisá los campos obligatorios antes de enviar.');
       var bad = form.querySelector(':invalid');
