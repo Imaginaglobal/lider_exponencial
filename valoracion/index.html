@@ -103,6 +103,8 @@ h1 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;back
   .navbtns .btn{padding:13px 18px;font-size:14px}
 }
 
+.chips.yn button{min-width:84px;justify-content:center;text-align:center}
+
 /* Opciones */
 .chips{display:flex;flex-wrap:wrap;gap:8px}
 .chips button{appearance:none;border:1px solid var(--line);background:rgba(255,255,255,.04);color:#fff;font:inherit;font-size:14px;font-weight:500;padding:10px 16px;border-radius:999px;cursor:pointer;transition:background .2s,border-color .2s}
@@ -315,8 +317,37 @@ footer{text-align:center;color:var(--faint);font-size:12px;margin-top:40px}
         <div class="q"><label class="t" for="valioso">¿Qué fue lo más valioso que te llevás de la experiencia?</label><textarea id="valioso" name="valioso" placeholder="Una idea, un concepto, una conversación…"></textarea></div>
       </section>
       <section class="card">
-        <div class="step"><span class="n">06</span><h2>Tus datos <span class="optional">opcional</span></h2></div>
-        <p class="hint">Podés dejarlo en blanco si preferís responder en forma anónima.</p>
+        <div class="step"><span class="n">06</span><h2>Próximas experiencias</h2></div>
+        <p class="hint">Contanos qué te interesaría para seguir.</p>
+        <div class="q" data-name="int_incompany" data-required>
+          <span class="t">¿Estarías interesado en que hagamos Ser Líder Exponencial para tu empresa in-company?<span class="req">*</span></span>
+          <div class="chips yn" role="radiogroup">
+            <button type="button" role="radio" aria-checked="false" data-v="Sí">Sí</button>
+            <button type="button" role="radio" aria-checked="false" data-v="No">No</button>
+          </div>
+          <div class="msg">Elegí Sí o No.</div>
+        </div>
+        <div class="q" data-name="int_disenohumano" data-required>
+          <span class="t">¿Estarías interesado en participar del workshop Diseño Humano para mejorar tu autoconocimiento?<span class="req">*</span></span>
+          <div class="chips yn" role="radiogroup">
+            <button type="button" role="radio" aria-checked="false" data-v="Sí">Sí</button>
+            <button type="button" role="radio" aria-checked="false" data-v="No">No</button>
+          </div>
+          <div class="msg">Elegí Sí o No.</div>
+        </div>
+        <div class="q" data-name="int_offsite" data-required>
+          <span class="t">¿Estarías interesado en participar de un Offsite en Cerro Uritorco (Córdoba) sobre Las 7 leyes universales de la vida?<span class="req">*</span></span>
+          <div class="chips yn" role="radiogroup">
+            <button type="button" role="radio" aria-checked="false" data-v="Sí">Sí</button>
+            <button type="button" role="radio" aria-checked="false" data-v="No">No</button>
+          </div>
+          <div class="msg">Elegí Sí o No.</div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="step"><span class="n">07</span><h2>Tus datos <span class="optional">opcional</span></h2></div>
+        <p class="hint">Si respondiste que sí a alguna propuesta, dejanos tus datos para contactarte. Si no, podés dejarlo en blanco.</p>
         <div class="two">
           <input type="text" name="nombre" placeholder="Nombre y apellido" maxlength="120">
           <input type="text" name="empresa" placeholder="Empresa" maxlength="120">
