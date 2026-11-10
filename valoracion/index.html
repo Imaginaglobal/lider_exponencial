@@ -81,8 +81,9 @@ h1 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;back
 .ends-inline{display:block;font-size:12.5px;color:var(--faint);margin-top:4px}
 
 /* Pasos */
-.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin-top:18px;position:sticky;top:8px;z-index:15;background:rgba(13,10,32,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:8px;border-radius:18px;border:1px solid var(--line)}
+.steps{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;margin-top:18px;position:sticky;top:8px;z-index:15;background:rgba(13,10,32,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:8px;border-radius:18px;border:1px solid var(--line)}
 .pill{appearance:none;border:0;background:transparent;color:var(--faint);font:inherit;font-size:12px;font-weight:600;padding:6px 2px;border-radius:12px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;transition:color .2s}
+.pill span{white-space:nowrap}
 .pill b{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line);font-size:12px;transition:background .3s,border-color .3s}
 .pill.active{color:#fff}
 .pill.active b{background:var(--grad);border-color:transparent;box-shadow:0 6px 18px -8px rgba(123,79,224,.9)}
@@ -99,11 +100,18 @@ h1 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;back
 .steperr{color:#FF9DB0;font-size:14px;text-align:center;min-height:20px;margin-top:16px}
 .stepview .privacy{text-align:center;margin-top:16px}
 @media (max-width:620px){
-  .pill{font-size:10.5px}
+  .steps{gap:2px;padding:8px 4px}
+  .pill{font-size:10px;letter-spacing:-.01em;padding:6px 0}
   .navbtns .btn{padding:13px 18px;font-size:14px}
 }
 
 .chips.yn button{min-width:84px;justify-content:center;text-align:center}
+
+.cond{margin-top:16px;padding:16px;border-radius:14px;background:rgba(207,132,247,.07);border:1px solid rgba(207,132,247,.25);animation:in .35s var(--ease)}
+.cond .t{margin-bottom:10px}
+.cond .msg{display:none;color:#FF9DB0;font-size:12.5px;margin-top:8px}
+.cond.err .msg{display:block}
+.cond.err input{border-color:#FF9DB0}
 
 /* Opciones */
 .chips{display:flex;flex-wrap:wrap;gap:8px}
@@ -172,19 +180,35 @@ footer{text-align:center;color:var(--faint);font-size:12px;margin-top:40px}
     </header>
 
     <form id="f" novalidate autocomplete="off">
-      <div class="intro fade" style="animation-delay:.04s"><b>¿Cuánto recomendarías cada sesión?</b> Calificá cada una del 1 al 10.<span class="ends-inline">1 = nada · 10 = totalmente</span></div>
+      <div class="intro fade" style="animation-delay:.04s"><b>Son 6 pasos.</b> Primero evaluás la experiencia en general y después cada sesión, jornada por jornada.<span class="ends-inline">Las notas van del 1 al 10 · 1 = nada · 10 = totalmente</span></div>
 
       <nav class="steps" id="steps" aria-label="Pasos del formulario">
-        <button type="button" class="pill" data-go="0"><b>1</b><span>Jornada 1</span></button>
-        <button type="button" class="pill" data-go="1"><b>2</b><span>Jornada 2</span></button>
-        <button type="button" class="pill" data-go="2"><b>3</b><span>Jornada 3</span></button>
-        <button type="button" class="pill" data-go="3"><b>4</b><span>Jornada 4</span></button>
-        <button type="button" class="pill" data-go="4"><b>5</b><span>Final</span></button>
+        <button type="button" class="pill" data-go="0"><b>1</b><span>General</span></button>
+        <button type="button" class="pill" data-go="1"><b>2</b><span>Jornada 1</span></button>
+        <button type="button" class="pill" data-go="2"><b>3</b><span>Jornada 2</span></button>
+        <button type="button" class="pill" data-go="3"><b>4</b><span>Jornada 3</span></button>
+        <button type="button" class="pill" data-go="4"><b>5</b><span>Jornada 4</span></button>
+        <button type="button" class="pill" data-go="5"><b>6</b><span>Final</span></button>
       </nav>
 
       <div class="stepview" data-step="0">
       <section class="card">
-        <div class="step"><span class="n">01</span><h2>Jornada 1</h2></div>
+        <div class="step"><span class="n">01</span><h2>Evaluación general</h2></div>
+        <p class="hint">Antes de ir sesión por sesión, contanos tu mirada sobre toda la experiencia.</p>
+        <div class="q" data-name="general" data-required>
+          <span class="t">¿Cómo evaluás la experiencia El Líder Exponencial en general?<span class="req">*</span></span>
+          <span class="sub">1 = muy baja · 10 = excelente</span>
+          <div class="scale s10" role="radiogroup" aria-label="Evaluación general" data-min="1" data-max="10"></div>
+          <div class="msg">Elegí un valor del 1 al 10.</div>
+        </div>
+      </section>
+        <div class="steperr" role="alert"></div>
+        <div class="navbtns"><span></span><span class="stepcount">1 de 6</span><button type="button" class="btn" data-next>Siguiente →</button></div>
+      </div>
+
+      <div class="stepview" data-step="1">
+      <section class="card">
+        <div class="step"><span class="n">02</span><h2>Jornada 1</h2></div>
         <p class="hint">Jueves 29 de octubre · Presencial</p>
         <div class="q" data-name="j1_osorio" data-required>
           <span class="who">Carlos Osorio</span>
@@ -218,12 +242,12 @@ footer{text-align:center;color:var(--faint);font-size:12px;margin-top:40px}
         </div>
       </section>
         <div class="steperr" role="alert"></div>
-        <div class="navbtns"><span></span><span class="stepcount">1 de 5</span><button type="button" class="btn" data-next>Siguiente →</button></div>
+        <div class="navbtns"><button type="button" class="btn ghost" data-prev>← Anterior</button><span class="stepcount">2 de 6</span><button type="button" class="btn" data-next>Siguiente →</button></div>
       </div>
 
-      <div class="stepview" data-step="1">
+      <div class="stepview" data-step="2">
       <section class="card">
-        <div class="step"><span class="n">02</span><h2>Jornada 2</h2></div>
+        <div class="step"><span class="n">03</span><h2>Jornada 2</h2></div>
         <p class="hint">Martes 3 de noviembre · Virtual</p>
         <div class="q" data-name="j2_briasco" data-required>
           <span class="who">Ismael Briasco</span>
@@ -239,12 +263,12 @@ footer{text-align:center;color:var(--faint);font-size:12px;margin-top:40px}
         </div>
       </section>
         <div class="steperr" role="alert"></div>
-        <div class="navbtns"><button type="button" class="btn ghost" data-prev>← Anterior</button><span class="stepcount">2 de 5</span><button type="button" class="btn" data-next>Siguiente →</button></div>
+        <div class="navbtns"><button type="button" class="btn ghost" data-prev>← Anterior</button><span class="stepcount">3 de 6</span><button type="button" class="btn" data-next>Siguiente →</button></div>
       </div>
 
-      <div class="stepview" data-step="2">
+      <div class="stepview" data-step="3">
       <section class="card">
-        <div class="step"><span class="n">03</span><h2>Jornada 3</h2></div>
+        <div class="step"><span class="n">04</span><h2>Jornada 3</h2></div>
         <p class="hint">Jueves 5 de noviembre · Virtual</p>
         <div class="q" data-name="j3_clendaniel" data-required>
           <span class="who">Scott Clendaniel</span>
@@ -260,12 +284,12 @@ footer{text-align:center;color:var(--faint);font-size:12px;margin-top:40px}
         </div>
       </section>
         <div class="steperr" role="alert"></div>
-        <div class="navbtns"><button type="button" class="btn ghost" data-prev>← Anterior</button><span class="stepcount">3 de 5</span><button type="button" class="btn" data-next>Siguiente →</button></div>
+        <div class="navbtns"><button type="button" class="btn ghost" data-prev>← Anterior</button><span class="stepcount">4 de 6</span><button type="button" class="btn" data-next>Siguiente →</button></div>
       </div>
 
-      <div class="stepview" data-step="3">
+      <div class="stepview" data-step="4">
       <section class="card">
-        <div class="step"><span class="n">04</span><h2>Jornada 4</h2></div>
+        <div class="step"><span class="n">05</span><h2>Jornada 4</h2></div>
         <p class="hint">Martes 10 de noviembre · Presencial</p>
         <div class="q" data-name="j4_fedio" data-required>
           <span class="who">Patricio Fedio</span>
@@ -299,12 +323,12 @@ footer{text-align:center;color:var(--faint);font-size:12px;margin-top:40px}
         </div>
       </section>
         <div class="steperr" role="alert"></div>
-        <div class="navbtns"><button type="button" class="btn ghost" data-prev>← Anterior</button><span class="stepcount">4 de 5</span><button type="button" class="btn" data-next>Siguiente →</button></div>
+        <div class="navbtns"><button type="button" class="btn ghost" data-prev>← Anterior</button><span class="stepcount">5 de 6</span><button type="button" class="btn" data-next>Siguiente →</button></div>
       </div>
 
-      <div class="stepview" data-step="4">
+      <div class="stepview" data-step="5">
       <section class="card">
-        <div class="step"><span class="n">05</span><h2>La experiencia completa</h2></div>
+        <div class="step"><span class="n">06</span><h2>La experiencia completa</h2></div>
         <p class="hint">Las preguntas con <span class="req">*</span> son obligatorias.</p>
 
         <div class="q" data-name="nps" data-required>
@@ -317,7 +341,7 @@ footer{text-align:center;color:var(--faint);font-size:12px;margin-top:40px}
         <div class="q"><label class="t" for="valioso">¿Qué fue lo más valioso que te llevás de la experiencia?</label><textarea id="valioso" name="valioso" placeholder="Una idea, un concepto, una conversación…"></textarea></div>
       </section>
       <section class="card">
-        <div class="step"><span class="n">06</span><h2>Próximas experiencias</h2></div>
+        <div class="step"><span class="n">07</span><h2>Próximas experiencias</h2></div>
         <p class="hint">Contanos qué te interesaría para seguir.</p>
         <div class="q" data-name="int_incompany" data-required>
           <span class="t">¿Estarías interesado en que hagamos Ser Líder Exponencial para tu empresa in-company?<span class="req">*</span></span>
@@ -343,10 +367,23 @@ footer{text-align:center;color:var(--faint);font-size:12px;margin-top:40px}
           </div>
           <div class="msg">Elegí Sí o No.</div>
         </div>
+        <div class="q" data-name="int_referido" data-required>
+          <span class="t">¿Estarías dispuesto a recomendar a algún colega o amigo para el próximo grupo de El Líder Exponencial?<span class="req">*</span></span>
+          <div class="chips yn" role="radiogroup">
+            <button type="button" role="radio" aria-checked="false" data-v="Sí">Sí</button>
+            <button type="button" role="radio" aria-checked="false" data-v="No">No</button>
+          </div>
+          <div class="msg">Elegí Sí o No.</div>
+          <div class="cond" id="refBlock" hidden data-text-required>
+            <label class="t" for="referido_nombre">¿A quién nos recomendás? Nombre completo<span class="req">*</span></label>
+            <input type="text" id="referido_nombre" name="referido_nombre" placeholder="Nombre y apellido de la persona" maxlength="160" autocomplete="off">
+            <div class="msg">Escribí el nombre completo de la persona que recomendás.</div>
+          </div>
+        </div>
       </section>
 
       <section class="card">
-        <div class="step"><span class="n">07</span><h2>Tus datos <span class="optional">opcional</span></h2></div>
+        <div class="step"><span class="n">08</span><h2>Tus datos <span class="optional">opcional</span></h2></div>
         <p class="hint">Si respondiste que sí a alguna propuesta, dejanos tus datos para contactarte. Si no, podés dejarlo en blanco.</p>
         <div class="two">
           <input type="text" name="nombre" placeholder="Nombre y apellido" maxlength="120">
@@ -354,7 +391,7 @@ footer{text-align:center;color:var(--faint);font-size:12px;margin-top:40px}
         </div>
       </section>
         <div class="steperr" id="formErr" role="alert"></div>
-        <div class="navbtns"><button type="button" class="btn ghost" data-prev>← Anterior</button><span class="stepcount">5 de 5</span><button class="btn" type="submit" id="send"><span class="spin"></span><span id="sendTxt">Enviar valoración</span></button></div>
+        <div class="navbtns"><button type="button" class="btn ghost" data-prev>← Anterior</button><span class="stepcount">6 de 6</span><button class="btn" type="submit" id="send"><span class="spin"></span><span id="sendTxt">Enviar valoración</span></button></div>
         <p class="privacy">Tus respuestas son confidenciales y se usan solo para mejorar la experiencia.</p>
       </div>
     </form>
@@ -402,6 +439,7 @@ var EXEC_URL = 'https://script.google.com/macros/s/AKfycbyDT1zqHFC7JVi4t_McvM9fW
       if (was){ delete state[name]; }
       else { b.setAttribute('aria-checked','true'); state[name] = b.dataset.v; q.classList.remove('err');
         var v = q.closest('.stepview'); if (v && !v.querySelector('.q.err')) v.querySelector('.steperr').textContent = ''; }
+      if (name === 'int_referido') actualizarReferido();
     });
   });
 
@@ -413,8 +451,23 @@ var EXEC_URL = 'https://script.google.com/macros/s/AKfycbyDT1zqHFC7JVi4t_McvM9fW
   var actual = 0, alcanzado = 0;
 
   function faltantes(view){
-    return [].slice.call(view.querySelectorAll('.q[data-required]')).filter(function(q){ return state[q.dataset.name] === undefined; });
+    var f = [].slice.call(view.querySelectorAll('.q[data-required]')).filter(function(q){ return state[q.dataset.name] === undefined; });
+    [].slice.call(view.querySelectorAll('[data-text-required]:not([hidden])')).forEach(function(c){
+      if (!c.querySelector('input').value.trim()) f.push(c);
+    });
+    return f;
   }
+
+  // Recomendación de un colega: si elige "Sí", pide el nombre completo
+  var refBlock = document.getElementById('refBlock');
+  var refInput = document.getElementById('referido_nombre');
+  function actualizarReferido(){
+    var si = state.int_referido === 'Sí';
+    refBlock.hidden = !si;
+    if (!si) refBlock.classList.remove('err');
+    else setTimeout(function(){ refInput.focus(); }, 50);
+  }
+  refInput.addEventListener('input', function(){ if (refInput.value.trim()) refBlock.classList.remove('err'); });
   function mostrar(i){
     actual = i; alcanzado = Math.max(alcanzado, i);
     views.forEach(function(v, k){ v.classList.toggle('on', k === i); });
@@ -465,6 +518,7 @@ var EXEC_URL = 'https://script.google.com/macros/s/AKfycbyDT1zqHFC7JVi4t_McvM9fW
     }
     var datos = Object.assign({}, state);
     form.querySelectorAll('textarea, input[type=text]').forEach(function(el){ datos[el.name] = el.value.trim(); });
+    if (datos.int_referido !== 'Sí') datos.referido_nombre = '';
 
     var btn = document.getElementById('send');
     btn.disabled = true; document.getElementById('sendTxt').textContent = 'Enviando…';
